@@ -17,11 +17,11 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class CurvePoint {
     // TODO: Map columns in data table CURVEPOINT with corresponding java fields
-    @Id
-    Integer id;
-    Integer curveId;
-    Timestamp asOfDate;
-    Double term;
-    Double value;
-    Timestamp creationDate;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+private  Integer id;
+private  Integer curveId;
+private  Timestamp asOfDate;
+private  Double term;
+private  Double value;
+private  Timestamp creationDate;
 }

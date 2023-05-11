@@ -10,30 +10,31 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "trade")
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Trade {
     // TODO: Map columns in data table TRADE with corresponding java fields
-    @Id
-    Integer tradeId;
-    String account;
-    String type;
-    Double buyQuantity;
-    Double sellQuantity;
-    Double buyPrice;
-    Double sellPrice;
-    String benchmark;
-    Timestamp tradeDate;
-    String security;
-    String status;
-    String trader;
-    String book;
-    String creationName;
-    Timestamp creationDate;
-    String revisionName;
-    Timestamp revisionDate;
-    String dealName;
-    String dealType;
-    String sourceListId;
-    String side;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer tradeId;
+    private String account;
+    private String type;
+    private Double buyQuantity;
+    private Double sellQuantity;
+    private Double buyPrice;
+    private Double sellPrice;
+    private String benchmark;
+    private Timestamp tradeDate;
+    private String security;
+    private String status;
+    private String trader;
+    private String book;
+    private String creationName;
+    private Timestamp creationDate;
+    private String revisionName;
+    private Timestamp revisionDate;
+    private String dealName;
+    private String dealType;
+    private String sourceListId;
+    private String side;
 
 }

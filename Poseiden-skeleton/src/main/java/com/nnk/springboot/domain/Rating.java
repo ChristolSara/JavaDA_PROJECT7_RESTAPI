@@ -13,10 +13,10 @@ import java.sql.Timestamp;
 @NoArgsConstructor @AllArgsConstructor
 public class Rating {
     // TODO: Map columns in data table RATING with corresponding java fields
-    @Id
-    Integer id;
-    String moodysRating;
-    String sandPRating;
-    String fitchRating;
-    Integer orderNumber;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private  Integer id;
+  private  String moodysRating;
+  private  String sandPRating;
+  private  String fitchRating;
+  private  Integer orderNumber;
 }

@@ -9,15 +9,17 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "rulename")
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class RuleName {
     // TODO: Map columns in data table RULENAME with corresponding java fields
     @Id
-    Integer id;
-    String name;
-    String description;
-    String json;
-    String template;
-    String sqlStr;
-    String sqlPart;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String name;
+    private String description;
+    private String json;
+    private String template;
+    private String sqlStr;
+    private String sqlPart;
 }
