@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BidList;
+import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.BidListRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +23,13 @@ public class BidListController {
     public String home(Model model)
     {
         // TODO: call service find all bids to show to the view
-
-        model.addAttribute("bidlist", bidListRepository.findAll());
+        model.addAttribute("bidLists", bidListRepository.findAll());
         return "bidList/list";
     }
 
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
+        bidListRepository.save(bid);
         return "bidList/add";
     }
 
@@ -44,13 +45,13 @@ public class BidListController {
             model.addAttribute("BidList", bidListRepository.findAll());
             return "redirect:/bidList/list";
 
-
-
     }
 
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get Bid by Id and to model then show to the form
+        BidList bidList = bidListRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList:" + id));
+        model.addAttribute("bidList", bidList);
         return "bidList/update";
     }
 
@@ -58,6 +59,16 @@ public class BidListController {
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
+
+        if (result.hasErrors()) {
+            return "bidList/update";
+        }
+
+        //  BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        // user.setPassword(encoder.encode(user.getPassword()));
+
+        bidListRepository.save(bidList);
+        model.addAttribute("bidLists", bidListRepository.findAll());
         return "redirect:/bidList/list";
     }
 
