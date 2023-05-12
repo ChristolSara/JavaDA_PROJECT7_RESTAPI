@@ -36,17 +36,16 @@ public class BidListController {
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return bid list
 
-        if (!result.hasErrors()) {
+
             //  BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             // user.setPassword(encoder.encode(user.getPassword()));
-bid.setType(bid.getType());
 
             bidListRepository.save(bid);
             model.addAttribute("BidList", bidListRepository.findAll());
             return "redirect:/bidList/list";
-        }
 
-        return "bidList/add";
+
+
     }
 
     @GetMapping("/bidList/update/{id}")
