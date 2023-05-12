@@ -14,10 +14,19 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/bidList/validate}" th:object="${bidList}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/bidList/validate}" th:object="${BidList}" method="post" class="form-horizontal" style="width: 100%">
 			<!--
 			TODO: Create a form to input the values of Bid, there are 2 buttons: Save data and Cancel to the list Bid
 			 -->
+
+			<div class="form-group">
+				<label for="bidType" class="col-sm-2 control-label">Bid Type</label>
+				<div class="col-sm-10">
+					<input type="text" th:field="*{bidType}" id="bidType" placeholder="bidType" class="col-4">
+					<p class="text-danger" th:if="${#fields.hasErrors('bidType')}" th:errors="*{bidType}"></p>
+				</div>
+			</div>
+
 		</form>
 	</div>
 

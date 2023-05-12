@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Rating;
+import com.nnk.springboot.repositories.RatingRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 @Controller
 public class RatingController {
     // TODO: Inject Rating service
+    private RatingRepository ratingRepository;
 
     @RequestMapping("/rating/list")
     public String home(Model model)
@@ -49,6 +51,8 @@ public class RatingController {
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Rating by Id and delete the Rating, return to Rating list
+        Rating rating = ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Rating Id:" + id));
+        ratingRepository.delete(rating);
         return "redirect:/rating/list";
     }
 }

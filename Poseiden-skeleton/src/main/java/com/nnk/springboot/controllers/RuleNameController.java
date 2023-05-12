@@ -1,6 +1,8 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.RuleName;
+import com.nnk.springboot.domain.Trade;
+import com.nnk.springboot.repositories.RuleNameRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +16,7 @@ import javax.validation.Valid;
 @Controller
 public class RuleNameController {
     // TODO: Inject RuleName service
+    private RuleNameRepository ruleNameRepository;
 
     @RequestMapping("/ruleName/list")
     public String home(Model model)
@@ -49,6 +52,8 @@ public class RuleNameController {
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
         // TODO: Find RuleName by Id and delete the RuleName, return to Rule list
+        RuleName ruleName = ruleNameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Rule?ame Id:" + id));
+        ruleNameRepository.delete(ruleName);
         return "redirect:/ruleName/list";
     }
 }

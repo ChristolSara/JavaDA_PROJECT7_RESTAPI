@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Trade;
+import com.nnk.springboot.repositories.TradeRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 @Controller
 public class TradeController {
     // TODO: Inject Trade service
+    private TradeRepository tradeRepository;
 
     @RequestMapping("/trade/list")
     public String home(Model model)
@@ -49,6 +51,8 @@ public class TradeController {
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Trade by Id and delete the Trade, return to Trade list
+        Trade trade = tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Trade Id:" + id));
+        tradeRepository.delete(trade);
         return "redirect:/trade/list";
     }
 }

@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 //import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,8 +14,8 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "curvepoint")
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor @AllArgsConstructor @Data
+
 public class CurvePoint {
     // TODO: Map columns in data table CURVEPOINT with corresponding java fields
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

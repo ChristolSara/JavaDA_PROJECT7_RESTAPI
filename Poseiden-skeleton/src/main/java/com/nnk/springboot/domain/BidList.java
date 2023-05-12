@@ -1,7 +1,6 @@
 package com.nnk.springboot.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
@@ -12,8 +11,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "bidlist")
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor @AllArgsConstructor @Data
 public class BidList {
     // TODO: Map columns in data table BIDLIST with corresponding java fields
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +38,5 @@ public class BidList {
     private String sourceListId;
     private String side;
 
-    public BidList(String accountTest, String typeTest, double v) {
-    }
+
 }

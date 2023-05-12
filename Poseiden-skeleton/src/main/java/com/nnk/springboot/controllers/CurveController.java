@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.CurvePoint;
+import com.nnk.springboot.repositories.CurvePointRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 public class CurveController {
     // TODO: Inject Curve Point service
 
+    private CurvePointRepository curvePointRepository;
     @RequestMapping("/curvePoint/list")
     public String home(Model model)
     {
@@ -49,6 +51,7 @@ public class CurveController {
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Curve by Id and delete the Curve, return to Curve list
+        CurvePoint cuvre =curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Cuvre Id:" + id));
         return "redirect:/curvePoint/list";
     }
 }
