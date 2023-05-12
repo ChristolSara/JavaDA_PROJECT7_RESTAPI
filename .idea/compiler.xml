@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AuteurService" target="17" />
-      <module name="spring-boot-skeleton" target="17" />
+      <module name="spring-boot-skeleton" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
