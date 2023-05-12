@@ -29,7 +29,6 @@ public class BidListController {
 
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
-        bidListRepository.save(bid);
         return "bidList/add";
     }
 
@@ -43,7 +42,7 @@ public class BidListController {
 
             bidListRepository.save(bid);
             model.addAttribute("BidList", bidListRepository.findAll());
-            return "redirect:/bidList/list";
+        return "bidList/add";
 
     }
 
