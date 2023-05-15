@@ -3,6 +3,10 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.BidListRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,15 +19,16 @@ import javax.validation.Valid;
 
 
 @Controller
+
 public class BidListController {
     // TODO: Inject Bid service
-
+    @Autowired
     private BidListRepository bidListRepository;
     @RequestMapping("/bidList/list")
     public String home(Model model)
     {
         // TODO: call service find all bids to show to the view
-        model.addAttribute("bidLists", bidListRepository.findAll());
+        model.addAttribute("bidLists",bidListRepository.findAll());
         return "bidList/list";
     }
 
@@ -35,13 +40,15 @@ public class BidListController {
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return bid list
-
+        if (!result.hasErrors()) {
 
             //  BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             // user.setPassword(encoder.encode(user.getPassword()));
 
             bidListRepository.save(bid);
-            model.addAttribute("BidList", bidListRepository.findAll());
+            model.addAttribute("bidLists", bidListRepository.findAll());
+            return "redirect:/bidList/list";
+        }
         return "bidList/add";
 
     }
@@ -66,6 +73,7 @@ public class BidListController {
         //  BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         // user.setPassword(encoder.encode(user.getPassword()));
 
+        bidList.setBidListId(id);
         bidListRepository.save(bidList);
         model.addAttribute("bidLists", bidListRepository.findAll());
         return "redirect:/bidList/list";
@@ -76,6 +84,7 @@ public class BidListController {
         // TODO: Find Bid by Id and delete the bid, return to Bid list
         BidList bid = bidListRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Bid Id:" + id));
         bidListRepository.delete(bid);
+        model.addAttribute("bidLists",bidListRepository.findAll());
         return "redirect:/bidList/list";
     }
 }
