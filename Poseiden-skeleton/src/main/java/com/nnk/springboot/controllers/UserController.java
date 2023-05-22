@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,8 +38,8 @@ public class UserController {
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
         if (!result.hasErrors()) {
-          //  BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-           // user.setPassword(encoder.encode(user.getPassword()));
+          BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+           user.setPassword(encoder.encode(user.getPassword()));
              user.setPassword(user.getPassword());
 
             userRepository.save(user);

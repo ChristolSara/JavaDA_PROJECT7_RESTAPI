@@ -6,20 +6,27 @@ import org.springframework.beans.factory.annotation.Required;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "bidlist")
-@NoArgsConstructor @AllArgsConstructor @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class BidList {
     // TODO: Map columns in data table BIDLIST with corresponding java fields
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer BidListId;
-private String account;
+   // @NotEmpty(message = "entrez infprmation account")
+    private String account;
     private String type;
 
+  //  @Size(min=100,message = "minimum 100")
     private Double bidQuantity;
 
     private Double askQuantity;

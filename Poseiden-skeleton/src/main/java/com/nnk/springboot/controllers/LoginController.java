@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
+import java.security.Principal;
+
 @Controller
 @RequestMapping("app")
 public class LoginController {
@@ -36,5 +39,23 @@ public class LoginController {
         mav.addObject("errorMsg", errorMessage);
         mav.setViewName("403");
         return mav;
+    }
+
+
+    //
+    @RequestMapping("/**")
+    @RolesAllowed("USER")
+    public String getUser(){
+        return "hi user";
+    }
+    ///
+    @RequestMapping("/admin")
+    @RolesAllowed("ADMIN")
+    public String getAdmin(){
+        return "hi admin";
+    }
+    @RequestMapping("/login")
+    public String getGithub(Principal user){
+        return "hi user" + user.toString();
     }
 }
