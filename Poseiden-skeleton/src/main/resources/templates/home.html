@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout.html">
 <head>
     <title> Spring Boot </title>
     <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
+<div layout:fragment="content">
 <h3> HOME PAGE </h3>
 <p>
     <a href="/login">Login</a> or create one <a href="/user/list">User management</a>
 </p>
+</div>
 </body>
 </html>

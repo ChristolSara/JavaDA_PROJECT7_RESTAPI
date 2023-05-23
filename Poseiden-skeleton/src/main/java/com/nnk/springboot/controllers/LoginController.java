@@ -56,6 +56,6 @@ public class LoginController {
     }
     @RequestMapping("/login")
     public String getGithub(Principal user){
-        return "hi user" + user.toString();
+        return "hi user"; //+ user.toString();
     }
 }

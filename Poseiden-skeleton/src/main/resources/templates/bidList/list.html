@@ -1,29 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html    xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+         layout:decorate="layout.html">
 <head>
     <meta charset="utf-8"/>
     <title>Home</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
 </head>
 <body>
+<div layout:fragment="content">
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a href="/bidList/list">Bid List</a>&nbsp;|&nbsp;
-                <a href="/curvePoint/list">Curve Points</a>&nbsp;|&nbsp;
-                <a href="/rating/list">Ratings</a>&nbsp;|&nbsp;
-                <a href="/trade/list">Trade</a>&nbsp;|&nbsp;
-                <a href="/ruleName/list">Rule</a>
-            </div>
-        </div>
-    </nav>
+
     <div class="col-6 text-right">
         Logged in user: <b th:inline="text" class="user"> [[${#httpServletRequest.remoteUser}]] </b>
         <form th:action="@{/app-logout}" method="POST">
@@ -67,5 +55,6 @@
 
 </div>
 </div>
+
 </body>
 </html>
